@@ -1,6 +1,7 @@
 package org.example;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,9 +13,13 @@ public class Course {
     private double credits;
     private Department department;
     private Assignment[] assignments;
-    private Student[] registeredStudents;
+    private List<Student> registeredStudents; // Changed from Student[] to List<Student>
     private double[] finalScores;
     private static int nextId = 1;
+
+    public Course() {
+        this.registeredStudents = new ArrayList<>();
+    }
 
     public boolean isAssignmentWeightValid() {
         double totalWeight = 0;
@@ -26,18 +31,19 @@ public class Course {
 
     public boolean registerStudent(Student student) {
         if (!isStudentRegistered(student)) {
-            Student[] newRegisteredStudents = new Student[registeredStudents.length + 1];
-            System.arraycopy(registeredStudents, 0, newRegisteredStudents, 0, registeredStudents.length);
-            newRegisteredStudents[newRegisteredStudents.length - 1] = student;
-            registeredStudents = newRegisteredStudents;
+            registeredStudents.add(student);
             return true;
         }
         return false;
     }
 
+    public boolean dropStudent(Student student) {
+        return registeredStudents.remove(student);
+    }
+
     public int[] calcStudentsAverage() {
-        int[] averages = new int[registeredStudents.length];
-        for (int i = 0; i < registeredStudents.length; i++) {
+        int[] averages = new int[registeredStudents.size()];
+        for (int i = 0; i < registeredStudents.size(); i++) {
             int sum = 0;
             for (Assignment assignment : assignments) {
                 sum += assignment.getScores().get(i);
@@ -46,7 +52,6 @@ public class Course {
         }
         return averages;
     }
-
 
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
         if (assignments == null) {
@@ -60,9 +65,11 @@ public class Course {
     }
 
     public void generateScores() {
+        // Implementation for generating scores
     }
 
     public void displayScores() {
+        // Implementation for displaying scores
     }
 
     public String toSimplifiedString() {
@@ -88,12 +95,7 @@ public class Course {
     }
 
     private boolean isStudentRegistered(Student student) {
-        for (Student s : registeredStudents) {
-            if (s.getStudentId().equals(student.getStudentId())) {
-                return true;
-            }
-        }
-        return false;
+        return registeredStudents.contains(student); // Use contains method of List
     }
 
     public String getCourseId() {
@@ -116,8 +118,8 @@ public class Course {
         return assignments;
     }
 
-    public Student[] getRegisteredStudents() {
-        return registeredStudents;
+    public List<Student> getRegisteredStudents() {
+        return registeredStudents; // Change return type to List<Student>
     }
 
     public double[] getFinalScores() {
