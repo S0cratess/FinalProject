@@ -44,7 +44,7 @@
       <li>Util Class: Complete.</li>
     </ul>
   </li>
-  <li>Implementation of Major Classes in the Final Project (Green zone):
+  <li>Implementation of Major Classes in the Final Project and Unit Testing (Green zone):
     <ul>
       <li>Add: Address</li>
       <li>Assign: Assignment</li>
