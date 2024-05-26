@@ -56,4 +56,14 @@
 </body>
 </html>
 
+<footer>
+    <p>May 26, 2pm</p>
+    <ul>
+      <li>Verification of all Project and MD file with link submitted on Omnivox</li>
+      <li>Final Project Complete</li>
+    </ul>
+  </footer>
+</body>
+</html>
+
 
