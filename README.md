@@ -1,4 +1,3 @@
-# FinalProject
 
 <!DOCTYPE html>
 <html lang="en">
