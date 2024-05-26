@@ -32,27 +32,28 @@
   </ul>
   
   <h3>Updates:</h3>
-  <ul>
-    <li>Classes:
-      <ul>
-        <li>Address: Complete.</li>
-        <li>Department: Complete.</li>
-        <li>Student: Complete.</li>
-        <li>Assignment: Complete.</li>
-        <li>Course: Complete.</li>
-        <li>Enum Gender: Complete.</li>
-        <li>Util Class: Complete.</li>
-      </ul>
-    </li>
-    <li>Implementation of Major Classes in the Final Project:
-      <ul>
-        <li>Add</li>
-        <li>Assign</li>
-        <li>Course</li>
-        <li>Util</li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+  <li>Classes:
+    <ul>
+      <li>Address: Complete.</li>
+      <li>Department: Complete.</li>
+      <li>Student: Complete.</li>
+      <li>Assignment: Complete.</li>
+      <li>Course: Complete.</li>
+      <li>Enum Gender: Complete.</li>
+      <li>Util Class: Complete.</li>
+    </ul>
+  </li>
+  <li>Implementation of Major Classes in the Final Project (Green zone):
+    <ul>
+      <li>Add: Address</li>
+      <li>Assign: Assignment</li>
+      <li>Course</li>
+      <li>Util</li>
+    </ul>
+  </li>
+</ul>
 </body>
 </html>
+
 
