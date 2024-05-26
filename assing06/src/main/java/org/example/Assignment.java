@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Assignment {
@@ -9,9 +10,15 @@ public class Assignment {
     private double weight;
     private int maxScore;
     private double assignmentAverage;
-    private ArrayList<Integer> scores;
+    private List<Integer> scores;
     private static int nextId = 1;
 
+    /**
+     * Constructs an Assignment Obj
+     * @param assignmentName name asign
+     * @param weight weight asign
+     * @param maxScore maximum score
+     */
     public Assignment(String assignmentName, double weight, int maxScore) {
         this.assignmentId = generateAssignmentId();
         this.assignmentName = assignmentName;
@@ -47,9 +54,12 @@ public class Assignment {
         return (double) sum / scores.size();
     }
 
-
-    public ArrayList<Integer> getScores() {
+    public List<Integer> getScores() {
         return scores;
+    }
+
+    public void setScores(List<Integer> scores) {
+        this.scores = scores;
     }
 
     public static int getNextId() {
@@ -57,41 +67,26 @@ public class Assignment {
     }
 
     public void calcAssignmentAvg() {
-        int sum = 0;
-        for (int score : scores) {
-            sum += score;
+        if (scores.isEmpty()) {
+            assignmentAverage = 0.0;
+        } else {
+            double sum = scores.stream().mapToInt(Integer::intValue).sum();
+            assignmentAverage = sum / scores.size();
         }
-        assignmentAverage = (double) sum / scores.size();
     }
 
     public void generateRandomScore() {
         Random random = new Random();
-        for (int i = 0; i < scores.size(); i++) {
-            int randomNumber = random.nextInt(11);
-            int score;
-            switch (randomNumber) {
-                case 0:
-                    score = random.nextInt(60);
-                    break;
-                case 1:
-                case 2:
-                    score = random.nextInt(10) + 60;
-                    break;
-                case 3:
-                case 4:
-                    score = random.nextInt(10) + 70;
-                    break;
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                    score = random.nextInt(10) + 80;
-                    break;
-                default:
-                    score = random.nextInt(11) + 90;
-            }
-            scores.set(i, score);
+        scores.clear();
+        for (int i = 0; i < maxScore; i++) {
+            int score = random.nextInt(maxScore + 1);
+            scores.add(score);
         }
+    }
+
+    public static boolean isAssignmentsTotalWeightValid(List<Assignment> assignments) {
+        double totalWeight = assignments.stream().mapToDouble(Assignment::getWeight).sum();
+        return Math.abs(totalWeight - 1.0) < 1e-5;
     }
 
     @Override

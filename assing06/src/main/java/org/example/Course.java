@@ -2,11 +2,13 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @ToString
+@EqualsAndHashCode
 public class Course {
     private String courseId;
     private String courseName;
@@ -29,6 +31,11 @@ public class Course {
         return totalWeight == 1.0;
     }
 
+    /**
+     * registers a student to a course
+     * @param student the student to register
+     * @return true if succesfully registered, false if not
+     */
     public boolean registerStudent(Student student) {
         if (!isStudentRegistered(student)) {
             registeredStudents.add(student);
@@ -65,11 +72,9 @@ public class Course {
     }
 
     public void generateScores() {
-        // Implementation for generating scores
     }
 
     public void displayScores() {
-        // Implementation for displaying scores
     }
 
     public String toSimplifiedString() {
@@ -95,7 +100,7 @@ public class Course {
     }
 
     private boolean isStudentRegistered(Student student) {
-        return registeredStudents.contains(student); // Use contains method of List
+        return registeredStudents.contains(student);
     }
 
     public String getCourseId() {
@@ -119,7 +124,39 @@ public class Course {
     }
 
     public List<Student> getRegisteredStudents() {
-        return registeredStudents; // Change return type to List<Student>
+        return registeredStudents;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setCredits(double credits) {
+        this.credits = credits;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public void setAssignments(Assignment[] assignments) {
+        this.assignments = assignments;
+    }
+
+    public void setRegisteredStudents(List<Student> registeredStudents) {
+        this.registeredStudents = registeredStudents;
+    }
+
+    public void setFinalScores(double[] finalScores) {
+        this.finalScores = finalScores;
+    }
+
+    public static void setNextId(int nextId) {
+        Course.nextId = nextId;
     }
 
     public double[] getFinalScores() {

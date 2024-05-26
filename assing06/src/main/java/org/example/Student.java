@@ -46,6 +46,10 @@ public class Student {
         return false;
     }
 
+    /**
+     * converts student to a simplified string using studentID + studentName + departmentName
+     * @return the whole string simplified
+     */
     public String toSimplifiedString() {
         return "Student ID: " + studentId + ", Student Name: " + studentName
                 + ", Department: " + department.getDepartmentName();

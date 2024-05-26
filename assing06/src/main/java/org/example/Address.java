@@ -57,35 +57,65 @@ public class Address {
     }
 
     /**
-     * Checks if a postcode is valid or not
+     * Checks if a postcode is valid or not -> can be 6 or 7 length code
      * @param postalCode the postal code to be validated.
      * @return if the postal code is valid according format if not return false
      */
     public static boolean isPostalCodeValid(String postalCode) {
-        if (postalCode == null) return false;
+        if (postalCode == null) {
+            return false;
+        }
 
-        postalCode = postalCode.toUpperCase();
-        if (postalCode.length() == 6) {
+        int length = postalCode.length();
+
+        if (length == 6) {
             for (int i = 0; i < 6; i++) {
                 if (i % 2 == 0) {
-                    if (!Character.isLetter(postalCode.charAt(i))) return false;
+                    if (!Character.isLetter(postalCode.charAt(i))) {
+                        return false;
+                    }
                 } else {
-                    if (!Character.isDigit(postalCode.charAt(i))) return false;
+                    if (!Character.isDigit(postalCode.charAt(i))) {
+                        return false;
+                    }
                 }
             }
             return true;
-        } else if (postalCode.length() == 7 && postalCode.charAt(3) == ' ') {
+        } else if (length == 7) {
+            if (postalCode.charAt(3) != ' ') {
+                return false;
+            }
+
             for (int i = 0; i < 7; i++) {
-                if (i == 3) continue;
-                if (i % 2 == 0) {
-                    if (!Character.isLetter(postalCode.charAt(i))) return false;
+                if (i == 3) {
+                    continue;
+                }
+
+                if (i < 3) {
+                    if (i % 2 == 0) {
+                        if (!Character.isLetter(postalCode.charAt(i))) {
+                            return false;
+                        }
+                    } else {
+                        if (!Character.isDigit(postalCode.charAt(i))) {
+                            return false;
+                        }
+                    }
                 } else {
-                    if (!Character.isDigit(postalCode.charAt(i))) return false;
+                    if ((i - 1) % 2 == 0) {
+                        if (!Character.isLetter(postalCode.charAt(i))) {
+                            return false;
+                        }
+                    } else {
+                        if (!Character.isDigit(postalCode.charAt(i))) {
+                            return false;
+                        }
+                    }
                 }
             }
             return true;
         }
+
         return false;
     }
 }
-
